@@ -3,15 +3,15 @@ package sample;
 public class NextNoteObj {
     String prevChord;
 
-    NextNoteObj(){ prevChord = null} //should prolly be singleton or permanant
+    NextNoteObj(){ prevChord = null;} //should prolly be singleton or permanant
 
     public String getNextChord(String currChord){
         if(prevChord== null){
             prevChord = currChord;
             return getLayerOne(currChord);
         }
-        else(){//layer two goes here.
-            getLayerOne(currChord);
+        else{//layer two goes here.
+           return getLayerOne(currChord);
         }
 
 
@@ -94,12 +94,12 @@ public class NextNoteObj {
                 else
                     return layerOne;
             default:
-                return layerOne
+                return layerOne;
         }
 
     }
 
     private String getLayerTwo(String layerOne, String layerTwo){
-
+        return null;
     }
 }

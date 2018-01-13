@@ -36,9 +36,14 @@ public class Controller {
     }
 
     public void updatePlayMusic() throws Exception {
+        NextNoteObj Next = new NextNoteObj();
         System.out.println("This happened");
-        sound.playKey(BPM.getText().trim());
-        sound.playKey("a");
+        while (true) {
+            sound.playChord(BPM.getText().trim());
+            BPM.setText(Next.getNextChord(BPM.getText().trim()));
+            Thread.sleep(2000);
+        }
+        //sound.playKey("a");
     }
 
 
