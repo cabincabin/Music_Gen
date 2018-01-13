@@ -23,10 +23,11 @@ public class Main extends Application {
 
         primaryStage.setTitle("Music Generator");
         primaryStage.setIconified(true);
-        primaryStage.centerOnScreen();
         primaryStage.setResizable(true);
-        primaryStage.setScene(mainStage);
         primaryStage.show();
+        primaryStage.centerOnScreen();
+        primaryStage.setScene(mainStage);
+
     }
 
 
