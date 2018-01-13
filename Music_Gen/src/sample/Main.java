@@ -8,11 +8,24 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+    public static Scene mainStage;
+
+    public static Controller mainController = new Controller();
+
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+
+        FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("HackGUI.fxml"));
+        Parent mainScreen = mainLoader.load();
+        mainController = mainLoader.getController();
+        mainController.setMainController(this);
+        mainStage = new Scene(mainScreen);
+
+        primaryStage.setTitle("Music Generator");
+        primaryStage.setIconified(true);
+        primaryStage.centerOnScreen();
+        primaryStage.setResizable(true);
+        primaryStage.setScene(mainStage);
         primaryStage.show();
     }
 
