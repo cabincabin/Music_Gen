@@ -5,15 +5,20 @@ import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class Sound {
+public class Sound implements Runnable{
 
     private Sequencer sequencer;
     private Synthesizer synth;
     private MidiChannel[] midiChannels;
     private Sequence currentSequence;
+    public  int noteNum;
+    public  int noteType; //0 major3 1 minor3
+    public  int BPM;
 
     public Sound() throws Exception{
-
+        noteNum = 48;
+        noteType = 0;
+        BPM = 88;
         this.sequencer = MidiSystem.getSequencer();
         this.synth = MidiSystem.getSynthesizer();
 
@@ -22,13 +27,51 @@ public class Sound {
         Instrument[] inst = synth.getDefaultSoundbank().getInstruments();
         midiChannels = synth.getChannels();
 
-        synth.loadInstrument(inst[0]);
+        //midiChannels[0].programChange(inst[10].getPatch().getProgram());
 
         sequencer.open();
 
         //playSong();
 
         }
+
+    @Override
+    public void run(){
+        int curr = 0;
+        int total = 16;
+        int note = 0;
+        try{
+            while(total > 0){
+                note = (int)Math.floor(Math.random()*4);
+                if(note == 1){
+                    if(noteType == 0){
+                        midiChannels[1].noteOn(noteNum+12+4, 100);
+                    }
+                    if(noteType == 1){
+                        midiChannels[1].noteOn(noteNum+12+3, 100);
+                    }
+                }
+                else if(note  == 2){
+                    midiChannels[1].noteOn(noteNum+12+7, 100);
+                }
+                else if(note == 3){
+                    if(noteType == 0){
+                        midiChannels[1].noteOn(noteNum+12+7+4, 100);
+                    }
+                    if(noteType == 1){
+                        midiChannels[1].noteOn(noteNum+12+7+3, 100);
+                    }
+                }
+                else midiChannels[1].noteOn(12, 100);
+                curr = (int)Math.floor(Math.random()*total + 1);
+                total = total - curr;
+
+                    Thread.sleep(60000*curr/(BPM*16));
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void playSong() throws Exception{
         InputStream is = new BufferedInputStream(new FileInputStream(new File("C:\\Users\\Floris\\Documents\\Hackathon_2018\\Midi files/file.mid")));
@@ -65,43 +108,42 @@ public class Sound {
 //        sequencer.getSequence().createTrack();
     }
 
-    public void playChord(String chord, int vel) throws Exception {
-        int baseNote = -1;
-        switch (""+chord.charAt(0)) {
-            case "c":
-                baseNote = 48;
-                break;
-            case "d":
-                baseNote = 50;
-                break;
-            case "e":
-                baseNote = 52;
-                break;
-            case "f":
-                baseNote = 53;
-                break;
-            case "g":
-                baseNote = 55;
-                break;
-            case "a":
-                baseNote = 57;
-                break;
-            case "b":
-                baseNote = 59;
-                break;
-        }
-        if(baseNote != -1){
-            midiChannels[0].noteOn(baseNote, vel);
-            if(chord.length() ==2){
-                midiChannels[0].noteOn(baseNote+3, vel);
-            }
-            else{
-                midiChannels[0].noteOn(baseNote+4, vel);
-            }
-            midiChannels[0].noteOn(baseNote+7, vel);
-        }
 
-//        sequencer.getSequence().createTrack();
+
+    //number from 1 to 26 for playing note durration (weighted)
+    //Plox use a random number generater
+    //THIS IS SHITTY CODE
+    public int getNoteDur(int num){
+        if(num>0 && num<=3){
+            return 1;
+        }
+        else if(num>3 && num<=6){
+            return 2;
+        }
+        else if(num>6 && num<=9){
+            return 4;
+        }
+        else if(num>9 && num<=12){
+            return 8;
+        }
+        else if(num>12 && num<=15){
+            return 16;
+        }
+        else if(num==16){
+            return 3;
+        }
+        else if(num==17){
+            return 5;
+        }
+        else if(num==18){
+            return 6;
+        }
+        else if(num==19){
+            return 7;
+        }
+        else{
+            return 9 + num - 20;
+        }
     }
 
 }

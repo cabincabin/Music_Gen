@@ -1,5 +1,6 @@
 package sample;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
@@ -22,7 +23,7 @@ public class Controller {
 
 
     @FXML
-    private Button startStop;
+    private JFXButton startStop;
 
     Main mainController;
 
@@ -40,21 +41,15 @@ public class Controller {
     }
 
     public void updatePlayMusic() throws Exception {
-        NextNoteObj Next = new NextNoteObj();
+        PlayChord currMesure = new PlayChord();
+
         System.out.println("This happened");
-        while (true) {
-            //Thread.sleep(1000);
-            sound.playChord(chord.getText().trim(), 100);
-            Thread.sleep(60000/(Integer.parseInt(BPM.getText().trim())));
-            sound.playChord(chord.getText().trim(), 75);
-            Thread.sleep(60000/(Integer.parseInt(BPM.getText().trim())));
-            sound.playChord(chord.getText().trim(), 90);
-            Thread.sleep(60000/(Integer.parseInt(BPM.getText().trim())));
-            sound.playChord(chord.getText().trim(), 75);
-            Thread.sleep(60000/(Integer.parseInt(BPM.getText().trim())));
-            chord.setText(Next.getNextChord(chord.getText().trim()));
-            
-        }
+            currMesure.BPM = Integer.parseInt(BPM.getText());
+            currMesure.chord = chord.getText();
+            Thread thread1 = new Thread(currMesure);
+            thread1.start();
+            //thread1.join();
+
         //sound.playKey("a");
     }
 
