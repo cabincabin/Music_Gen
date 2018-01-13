@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 
 public class Controller {
+    @FXML
+    private JFXTextField chord;
 
     @FXML
     private JFXTextField BPM;
@@ -16,6 +18,8 @@ public class Controller {
 
     @FXML
     private ComboBox firstChord;
+
+
 
     @FXML
     private Button startStop;
@@ -39,9 +43,17 @@ public class Controller {
         NextNoteObj Next = new NextNoteObj();
         System.out.println("This happened");
         while (true) {
-            sound.playChord(BPM.getText().trim());
-            BPM.setText(Next.getNextChord(BPM.getText().trim()));
-            Thread.sleep(2000);
+            //Thread.sleep(1000);
+            sound.playChord(chord.getText().trim(), 100);
+            Thread.sleep(60000/(Integer.parseInt(BPM.getText().trim())));
+            sound.playChord(chord.getText().trim(), 75);
+            Thread.sleep(60000/(Integer.parseInt(BPM.getText().trim())));
+            sound.playChord(chord.getText().trim(), 90);
+            Thread.sleep(60000/(Integer.parseInt(BPM.getText().trim())));
+            sound.playChord(chord.getText().trim(), 75);
+            Thread.sleep(60000/(Integer.parseInt(BPM.getText().trim())));
+            chord.setText(Next.getNextChord(chord.getText().trim()));
+            
         }
         //sound.playKey("a");
     }

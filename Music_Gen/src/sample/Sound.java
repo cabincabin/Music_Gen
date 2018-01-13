@@ -65,7 +65,7 @@ public class Sound {
 //        sequencer.getSequence().createTrack();
     }
 
-    public void playChord(String chord) throws Exception {
+    public void playChord(String chord, int vel) throws Exception {
         int baseNote = -1;
         switch (""+chord.charAt(0)) {
             case "c":
@@ -91,14 +91,14 @@ public class Sound {
                 break;
         }
         if(baseNote != -1){
-            midiChannels[0].noteOn(baseNote, 100);
+            midiChannels[0].noteOn(baseNote, vel);
             if(chord.length() ==2){
-                midiChannels[0].noteOn(baseNote+3, 100);
+                midiChannels[0].noteOn(baseNote+3, vel);
             }
             else{
-                midiChannels[0].noteOn(baseNote+4, 100);
+                midiChannels[0].noteOn(baseNote+4, vel);
             }
-            midiChannels[0].noteOn(baseNote+7, 100);
+            midiChannels[0].noteOn(baseNote+7, vel);
         }
 
 //        sequencer.getSequence().createTrack();
