@@ -71,6 +71,7 @@ public class Trie {
                 if(n.lon.isEmpty()){
                     return nextNote2(Arrays.copyOfRange(in, 1, in.length));
                 }
+
                 return bestNode(n.lon);
             }
         }
@@ -81,11 +82,14 @@ public class Trie {
         for(node n : heads){//1
             if(n.note.toLowerCase().equals(in[0].toLowerCase())){
                 if(n.lon.isEmpty()){
+                    System.out.println("Emp");
                     return nextNote2(Arrays.copyOfRange(in, 1, in.length));
+
                 }
                 for(node k: n.lon){//2
                     if(k.note.toLowerCase().equals(in[1].toLowerCase())) {
                         if (k.lon.isEmpty()) {
+                            System.out.println("ty");
                             return nextNote3(Arrays.copyOfRange(in, 1, in.length));
                         }
                         return bestNode(k.lon);
@@ -105,6 +109,7 @@ public class Trie {
 
         for(int i = 0; i < len; i++) {
             percentage[i] = in.get(i).weight;
+            //System.out.println("Ni" + in.get(i).note);
         }
 
         for(int i = 0; i < len; i++) {
@@ -115,24 +120,33 @@ public class Trie {
             newPercentage[i] = (100/perTotal) * percentage[i];
         }
 
-        for(int i = 0; i < len ; i++) {
-            if(i-1 > 0) {
+        for(int i = 0; i < len; i++) {
+            if(i-1 >= 0) {
                 range[i] = range[i - 1] + newPercentage[i];
             } else {
-                range[i] = newPercentage[i];
+                range[0] = newPercentage[i];
             }
+           // System.out.println("Ni" + range[i]);
         }
 
         long time = System.currentTimeMillis();
         Random rand = new Random(time);
-        int random = (int) rand.nextDouble() * 100;
+        int random = (int) (rand.nextDouble() * 100);
+        //System.out.println(random);
 
-        for (int i = 0; i < len ; i++) {
-            if (random > range[i]) {
+
+        for (int i = 0; i < len; i++) {
+            if(i == 0){
+                if(random > 0 && random <= range[0]){
+                    return in.get(0).note.toLowerCase();
+                }
+            }
+            else if (random > range[i-1] && random <= range[i]) {
                 return in.get(i).note.toLowerCase();
             }
+
         }
-        return in.get(0).note.toLowerCase();
+        return "F";
 
     }
 

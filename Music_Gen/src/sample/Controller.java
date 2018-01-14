@@ -64,7 +64,7 @@ public class Controller {
 
         System.out.println("This happened");
             currMesure.BPM = Integer.parseInt(BPM.getText());
-            currMesure.chord = chord.getText();
+            currMesure.chord = chord.getText().toLowerCase();
             currMesure.trie=trie;
             Thread thread1 = new Thread(currMesure);
             thread1.start();

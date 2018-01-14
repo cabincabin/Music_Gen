@@ -80,7 +80,7 @@ public class PlayChord implements Runnable {
             String[] s = {prev,chord};
             prevprev = prev;
             prev=chord;
-            chord = trie.nextNote3(s).trim().toLowerCase(); //
+            chord = trie.nextNote4(s).trim().toLowerCase();
             System.out.println(chord);
 
             run();

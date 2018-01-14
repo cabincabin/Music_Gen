@@ -8,8 +8,8 @@ public class Display {
     private static Object mutex = new Object();
 
     private Display() {
-        noteHeight = new int[100 + 4 - 36];
-        for(int i = 0; i < 100 + 4 - 36; i++) {
+        noteHeight = new int[86 + 4 - 36];
+        for(int i = 0; i < 86 + 4 - 36; i++) {
             noteHeight[i] = 1   ;
         }
     }
