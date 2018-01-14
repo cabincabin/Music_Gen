@@ -11,21 +11,36 @@ public class Trie {
     public void read(String in){
         String [] sets = in.split("\n");
         Vector<String> found = new Vector<String>();
-        for(String i: sets){
-            String temp = i.split(",")[0];
+        for(String s: sets){
+            String temp = s.split(",")[0];
             if(found.contains(temp)){
-                for(node n : heads){
-                    if(n.note.equals(temp)){
-                        n.generate(new Vector(Arrays.asList(i.split(","))));
-                    }
+                for(int i = 0; i<heads.size();i++){
+                    if(found.elementAt(i).equals(temp));
                 }
             }else{
                 found.add(temp);
+                System.out.println(temp + "HEAD");
                 node x = new node();
-                x.generate(new Vector(Arrays.asList(i.split(","))));
+                x.generate(new Vector(Arrays.asList(s.split(","))));
                 heads.add(x);
             }
         }
 
+    }
+
+    public void read2(String in){
+        String [] sets = in.split("\n");
+        Vector<String> found = new Vector<String>();
+        for(String s: sets){
+            String HN = s.split(",")[0];
+            if(found.contains(HN)){
+                System.out.println("REPEAT");
+            }else{
+                found.add(HN);
+                heads.add(new node(new Vector(Arrays.asList(s.split(",")))));
+            }
+
+
+        }
     }
 }
