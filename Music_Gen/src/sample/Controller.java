@@ -72,7 +72,7 @@ public class Controller {
     public void drawSquares() {
         canvas.setWidth(mainPane.getWidth());
         canvas.setHeight(mainPane.getHeight());
-        System.out.println("This happened");
+        //System.out.println("This happened");
 
         double windowH = gc.getCanvas().getHeight();
         double windowW = gc.getCanvas().getWidth();

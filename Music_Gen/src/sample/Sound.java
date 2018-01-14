@@ -4,6 +4,7 @@ import javax.sound.midi.*;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Vector;
 
 public class Sound implements Runnable{
 
@@ -40,7 +41,13 @@ public class Sound implements Runnable{
         int curr = 0;
         int total = 16;
         int note = 0;
-
+        Vector<Integer> possibilities = new Vector<Integer>();
+            
+        possibilities.add(2);
+        possibilities.add(4);
+        possibilities.add(8);
+        possibilities.add(16);
+        //possibilities.add(1);
             while(total > 0){
                 try{
                 note = (int)Math.floor(Math.random()*4);
@@ -73,10 +80,29 @@ public class Sound implements Runnable{
                     midiChannels[1].noteOn(12, 100);
                 }
 
-                curr = (int)Math.floor(Math.random()*total + 1);
+                int randVal = (int)Math.floor(Math.random()*possibilities.size());
+                curr = possibilities.get(randVal);
                 total = total - curr;
-
-                    Thread.sleep(60000*curr/(BPM*16));
+                if(total < 8) {
+                    for(int i = 0; i < possibilities.size(); i++) {
+                        if(possibilities.get(i) == 8) {
+                            possibilities.remove(i);
+                        }
+                    }
+                } else if(total < 4) {
+                    for(int i = 0; i < possibilities.size(); i++) {
+                        if(possibilities.get(i) == 4) {
+                            possibilities.remove(i);
+                        }
+                    }
+                } else if (total < 2) {
+                    for(int i = 0; i < possibilities.size(); i++) {
+                        if(possibilities.get(i) == 2) {
+                            possibilities.remove(i);
+                        }
+                    }
+                }
+                Thread.sleep(60000*curr*4/(BPM*16));
             } catch (InterruptedException e) {
                 System.out.println(noteNum);
                 e.printStackTrace();

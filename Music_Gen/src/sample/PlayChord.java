@@ -47,28 +47,29 @@ public class PlayChord implements Runnable {
         try {
             //System.out.println("here");
             noteDepth = (int) Math.random()*4;
-            soundMesure1.noteNum = playChord(chord, 100);
+            soundMesure1.noteNum = playChord(chord, 90);
             soundMesure1.noteType = chord.length()-1;
             soundMesure1.BPM = BPM;
-            soundMesure2.noteNum = playChord(chord, 100)+12;
+            soundMesure2.noteNum = playChord(chord, 90)+12;
             soundMesure2.noteType = chord.length()-1;
             soundMesure2.BPM = BPM;
-            /*soundMesure3.noteNum = playChord(chord, 100)+34;
+            soundMesure3.noteNum = playChord(chord, 100)+34;
             soundMesure3.noteType = chord.length()-1;
-            soundMesure3.BPM = BPM;*/
+            soundMesure3.BPM = BPM;
             try {
                 new Thread(soundMesure1).start();
+                new Thread(soundMesure2).start();
                 new Thread(soundMesure2).start();
             }
             catch (Exception e){
                 e.printStackTrace();
             }
             Thread.sleep(60000/(BPM));
-            playChord(chord, 75);
+            playChord(chord, 55);
             Thread.sleep(60000/(BPM));
-            playChord(chord, 90);
+            playChord(chord, 80);
             Thread.sleep(60000/(BPM));
-            playChord(chord, 75);
+            playChord(chord, 55);
             Thread.sleep(60000/(BPM));
             chord = Next.getNextChord(chord);
             run();
