@@ -182,12 +182,12 @@ public class Main extends Application {
         primaryStage.centerOnScreen();
         primaryStage.setScene(mainStage);
 
-        Trie trie = new Trie();
-        trie.read(string);
+        /*Trie trie = new Trie();
+        trie.read(string);*/
 
-        for (node i: trie.heads ) {
+        /*for (node i: trie.heads ) {
             System.out.println(i.note);
-        }
+        }*/
 
     }
 

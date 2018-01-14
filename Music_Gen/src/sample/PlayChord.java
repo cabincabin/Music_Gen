@@ -74,7 +74,8 @@ public class PlayChord implements Runnable {
             Thread.sleep(60000/(BPM));
             playChord(chord, 55);
             Thread.sleep(60000/(BPM));
-            chord = trie.; //Next.getNextChord(chord);
+            //chord = trie.; //Next.getNextChord(chord);
+
             run();
         } catch (Exception e) {
             e.printStackTrace();
