@@ -17,6 +17,7 @@ public class PlayChord implements Runnable {
     Sound soundMesure3;
     int noteDepth;
     Random generator = new Random(System.currentTimeMillis());
+    public Trie trie;
 
     public static String chord;
     public static int BPM;
@@ -73,7 +74,7 @@ public class PlayChord implements Runnable {
             Thread.sleep(60000/(BPM));
             playChord(chord, 55);
             Thread.sleep(60000/(BPM));
-            chord = Next.getNextChord(chord);
+            chord = trie.; //Next.getNextChord(chord);
             run();
         } catch (Exception e) {
             e.printStackTrace();

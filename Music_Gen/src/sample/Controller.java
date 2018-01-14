@@ -39,11 +39,16 @@ public class Controller {
 
     Sound sound;
 
+    Trie trie = new Trie();
+
+
+
     public Controller() {
 
     }
 
     public void initialize() throws Exception {
+        trie.read(Main.string);
         sound = new Sound();
         gc = canvas.getGraphicsContext2D();
         BPM.setStyle("-fx-text-inner-color: white;");
@@ -60,6 +65,7 @@ public class Controller {
         System.out.println("This happened");
             currMesure.BPM = Integer.parseInt(BPM.getText());
             currMesure.chord = chord.getText();
+            currMesure.trie=trie;
             Thread thread1 = new Thread(currMesure);
             thread1.start();
             //thread1.join();
