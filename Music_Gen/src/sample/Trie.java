@@ -16,7 +16,12 @@ public class Trie {
             String temp = s.split(",")[0];
             if(found.contains(temp)){
                 for(int i = 0; i<heads.size();i++){
-                    if(found.elementAt(i).equals(temp));
+                    if(found.elementAt(i).equals(temp)) {
+                        Vector<String> lis = new Vector(Arrays.asList(s.split(",")));
+                        lis.remove(0);
+                        lis.remove(0);
+                        heads.elementAt(i).add(lis);
+                    }
                 }
             }else{
                 found.add(temp);

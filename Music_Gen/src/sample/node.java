@@ -44,11 +44,13 @@ public class node {
         }
     }
 
-    private void add(Vector<String> in){
+    public void add(Vector<String> in){
         int index = -1;
         for(node n : lon){
-            if(n.equals(in.firstElement())){
+            System.out.println(n.note + "=="+in.firstElement());
+            if(n.note.equals(in.firstElement())){
                 index = lon.indexOf(n);
+                System.out.println("SEX ON THE BEACH");
             }
         }
         if(index == -1){
