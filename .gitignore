@@ -11,6 +11,7 @@
 .mtj.tmp/
 
 .idea/*
+.idea/workspace.xml
 out/*
 Music_Gen/Music_Gen.iml
 

@@ -13,10 +13,15 @@ public class Trie {
         String [] sets = in.split("\n");
         Vector<String> found = new Vector<String>();
         for(String s: sets){
-            String temp = s.split(",")[0];
-            if(found.contains(temp)){
+            String temp = s.split(",")[0].toLowerCase();
+            if(found.contains(temp.toLowerCase())){
                 for(int i = 0; i<heads.size();i++){
-                    if(found.elementAt(i).equals(temp));
+                    if(found.elementAt(i).toLowerCase().equals(temp.toLowerCase())) {
+                        Vector<String> lis = new Vector(Arrays.asList(s.split(",")));
+                        lis.remove(0);
+                        lis.remove(0);
+                        heads.elementAt(i).add(lis);
+                    }
                 }
             }else{
                 found.add(temp);
@@ -29,17 +34,17 @@ public class Trie {
 
     public String nextNote(String [] in){
         for(node n : heads){//1
-            if(n.note.equals(in[0])){
+            if(n.note.toLowerCase().equals(in[0].toLowerCase())){
                 if(n.lon.isEmpty()){
                     return nextNote2(Arrays.copyOfRange(in, 1, in.length));
                 }
                 for(node k: n.lon){//2
-                    if(k.note.equals(in[1])) {
+                    if(k.note.toLowerCase().equals(in[1].toLowerCase())) {
                         if (k.lon.isEmpty()) {
                             return nextNote3(Arrays.copyOfRange(in, 1, in.length));
                         }
                         for (node f : k.lon) {//3
-                            if(f.note.equals(in[2])) {
+                            if(f.note.toLowerCase().equals(in[2].toLowerCase())) {
                                 if (f.lon.isEmpty()) {
                                     return nextNote3(Arrays.copyOfRange(in, 1, in.length));
                                 }
@@ -50,36 +55,36 @@ public class Trie {
                 }
             }
         }
-        return "C";
+        return "e";
     }
 
     public String nextNote2(String [] in){
         for(node n : heads){//1
             return bestNode(n.lon);
         }
-        return "C";
+        return "F";
     }
 
     public String nextNote3(String [] in){
         for(node n : heads){//1
-            if(n.note.equals(in[0])){
+            if(n.note.toLowerCase().equals(in[0].toLowerCase())){
                 if(n.lon.isEmpty()){
                     return nextNote2(Arrays.copyOfRange(in, 1, in.length));
                 }
                 return bestNode(n.lon);
             }
         }
-        return "C";
+        return "F";
     }
 
     public String nextNote4(String [] in){
         for(node n : heads){//1
-            if(n.note.equals(in[0])){
+            if(n.note.toLowerCase().equals(in[0].toLowerCase())){
                 if(n.lon.isEmpty()){
                     return nextNote2(Arrays.copyOfRange(in, 1, in.length));
                 }
                 for(node k: n.lon){//2
-                    if(k.note.equals(in[1])) {
+                    if(k.note.toLowerCase().equals(in[1].toLowerCase())) {
                         if (k.lon.isEmpty()) {
                             return nextNote3(Arrays.copyOfRange(in, 1, in.length));
                         }
@@ -88,7 +93,7 @@ public class Trie {
                 }
             }
         }
-        return "C";
+        return "F";
     }
 
     public String bestNode(Vector<node> in){
@@ -124,10 +129,10 @@ public class Trie {
 
         for (int i = 0; i < len ; i++) {
             if (random > range[i]) {
-                return in.get(i).note;
+                return in.get(i).note.toLowerCase();
             }
         }
-        return in.get(0).note;
+        return in.get(0).note.toLowerCase();
 
     }
 

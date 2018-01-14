@@ -137,7 +137,7 @@ public class Main extends Application {
             "G,49,am,17,em,1.4\n" +
             "G,49,am,17,F,6.6\n" +
             "G,49,am,17,G,3.8\n" +
-            "am,47,C,7.6,dm,0.81\n" +
+            "am,47,C,7.6,dm,0.81\n"/* +
             "am,47,C,7.6,em,0.47\n" +
             "am,47,C,7.6,F,2.3\n" +
             "am,47,C,7.6,G,2.2\n" +
@@ -161,7 +161,7 @@ public class Main extends Application {
             "am,47,G,14,dm,1.2\n" +
             "am,47,G,14,em,0.75\n" +
             "am,47,G,14,F,6.8\n" +
-            "am,47,G,14,am,2.0";
+            "am,47,G,14,am,2.0"*/;
 
     public static Controller mainController = new Controller();
 
