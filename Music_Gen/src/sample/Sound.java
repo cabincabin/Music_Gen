@@ -41,7 +41,6 @@ public class Sound implements Runnable{
         int total = 16;
         int note = 0;
 
-
             while(total > 0){
                 try{
                 note = (int)Math.floor(Math.random()*4);
