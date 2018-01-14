@@ -31,6 +31,13 @@ public class Sound implements Runnable{
 
         sequencer.open();
 
+        int[] noteHeights = {0};
+
+        for(int i = 0; i < 83 - 36; i++) {
+            noteHeights[i] = 0;
+        }
+
+        Display.getInstance().setNoteHeight(noteHeights);
         //playSong();
 
         }
@@ -40,29 +47,41 @@ public class Sound implements Runnable{
         int curr = 0;
         int total = 16;
         int note = 0;
+
+        Display.getInstance().decrementAllNoteHeight();
+
         try{
             while(total > 0){
                 note = (int)Math.floor(Math.random()*4);
                 if(note == 1){
                     if(noteType == 0){
+                        Display.getInstance().incrementNoteHeight(noteNum + 12 + 4 - 36);
                         midiChannels[1].noteOn(noteNum+12+4, 100);
                     }
                     if(noteType == 1){
+                        Display.getInstance().incrementNoteHeight(noteNum + 12 + 3 - 36);
                         midiChannels[1].noteOn(noteNum+12+3, 100);
                     }
                 }
                 else if(note  == 2){
+                    Display.getInstance().incrementNoteHeight(noteNum + 12 + 7 - 36);
                     midiChannels[1].noteOn(noteNum+12+7, 100);
                 }
                 else if(note == 3){
                     if(noteType == 0){
+                        Display.getInstance().incrementNoteHeight(noteNum + 12 + 7 - 36);
                         midiChannels[1].noteOn(noteNum+12+7+4, 100);
                     }
                     if(noteType == 1){
+                        Display.getInstance().incrementNoteHeight(noteNum + 12 + 7 + 3 - 36);
                         midiChannels[1].noteOn(noteNum+12+7+3, 100);
                     }
                 }
-                else midiChannels[1].noteOn(12, 100);
+                else {
+                    Display.getInstance().incrementNoteHeight(noteNum + 12 - 36);
+                    midiChannels[1].noteOn(12, 100);
+                }
+
                 curr = (int)Math.floor(Math.random()*total + 1);
                 total = total - curr;
 
