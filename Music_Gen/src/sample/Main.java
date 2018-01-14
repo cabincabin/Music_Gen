@@ -176,7 +176,6 @@ public class Main extends Application {
         mainStage = new Scene(mainScreen);
 
         primaryStage.setTitle("Music Generator");
-        primaryStage.setIconified(true);
         primaryStage.setResizable(true);
         primaryStage.show();
         primaryStage.centerOnScreen();
@@ -196,5 +195,9 @@ public class Main extends Application {
         launch(args);
     }
 
+    @Override
+    public void stop(){
+        System.exit(0);
+    }
 
 }
