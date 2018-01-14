@@ -14,8 +14,6 @@ public class Controller {
     @FXML
     private JFXTextField BPM;
 
-    @FXML
-    private JFXTextField timeSignature;
 
     @FXML
     private ComboBox firstChord;
@@ -34,6 +32,8 @@ public class Controller {
 
     public void initialize() throws Exception {
         sound = new Sound();
+        BPM.setStyle("-fx-text-inner-color: white;");
+        chord.setStyle("-fx-text-inner-color: white;");
     }
 
     public void setMainController(Main main) {

@@ -15,7 +15,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-        FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("HackGUI.fxml"));
+        FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("HackGUI2.fxml"));
         Parent mainScreen = mainLoader.load();
         mainController = mainLoader.getController();
         mainController.setMainController(this);
