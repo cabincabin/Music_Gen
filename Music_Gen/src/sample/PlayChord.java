@@ -44,7 +44,7 @@ public class PlayChord implements Runnable {
     public void run(){
 
         try {
-            System.out.println("here");
+            //System.out.println("here");
 
             soundMesure1.noteNum = playChord(chord, 100);
             soundMesure1.noteType = chord.length()-1;
@@ -52,9 +52,9 @@ public class PlayChord implements Runnable {
             soundMesure2.noteNum = playChord(chord, 100)+12;
             soundMesure2.noteType = chord.length()-1;
             soundMesure2.BPM = BPM;
-            soundMesure3.noteNum = playChord(chord, 100)+34;
+            /*soundMesure3.noteNum = playChord(chord, 100)+34;
             soundMesure3.noteType = chord.length()-1;
-            soundMesure3.BPM = BPM;
+            soundMesure3.BPM = BPM;*/
             try {
                 new Thread(soundMesure1).start();
                 new Thread(soundMesure2).start();
@@ -108,15 +108,18 @@ public class PlayChord implements Runnable {
                 break;
         }
         if(baseNote != -1){
-            System.out.println(baseNote);
-            System.out.println(vel);
+            //System.out.println(baseNote);
+            //System.out.println(vel);
             midiChannels[0].noteOn(baseNote, vel);
             if(chord.length() ==2){
+                Display.getInstance().incrementNoteHeight(baseNote + 3 - 36);
                 midiChannels[0].noteOn(baseNote+3, vel);
             }
             else{
+                Display.getInstance().incrementNoteHeight(baseNote + 4 - 36);
                 midiChannels[0].noteOn(baseNote+4, vel);
             }
+            Display.getInstance().incrementNoteHeight(baseNote + 7 - 36);
             midiChannels[0].noteOn(baseNote+7, vel);
         }
         return baseNote;

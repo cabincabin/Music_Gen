@@ -31,13 +31,6 @@ public class Sound implements Runnable{
 
         sequencer.open();
 
-        int[] noteHeights = {0};
-
-        for(int i = 0; i < 83 - 36; i++) {
-            noteHeights[i] = 0;
-        }
-
-        Display.getInstance().setNoteHeight(noteHeights);
         //playSong();
 
         }
@@ -48,10 +41,9 @@ public class Sound implements Runnable{
         int total = 16;
         int note = 0;
 
-        Display.getInstance().decrementAllNoteHeight();
 
-        try{
             while(total > 0){
+                try{
                 note = (int)Math.floor(Math.random()*4);
                 if(note == 1){
                     if(noteType == 0){
@@ -86,10 +78,12 @@ public class Sound implements Runnable{
                 total = total - curr;
 
                     Thread.sleep(60000*curr/(BPM*16));
+            } catch (InterruptedException e) {
+                System.out.println(noteNum);
+                e.printStackTrace();
             }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
+
     }
 
     public void playSong() throws Exception{

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.canvas.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #273746;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <Canvas fx:id="canvas" height="400.0" opacity="0.43" width="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <cursor>
+            <Cursor fx:constant="CLOSED_HAND" />
+         </cursor></Canvas>
+      <AnchorPane prefHeight="46.0" prefWidth="600.0" style="-fx-background-color: #1c2833;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <Label alignment="CENTER" prefHeight="46.0" prefWidth="424.0" style="-fx-background-color: #1c2833;" text="Music Generator Extraordinaire" textFill="WHITE" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+         </top>
+         <center>
+            <FlowPane alignment="CENTER" prefHeight="141.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+               <children>
+                  <GridPane alignment="CENTER" prefHeight="113.0" prefWidth="359.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="93.0" prefWidth="180.0">
+                           <children>
+                              <Label text="BPM, yo" textFill="WHITE" />
+                           </children>
+                        </HBox>
+                        <JFXTextField fx:id="BPM" focusColor="#40a868" unFocusColor="WHITE" GridPane.columnIndex="1" />
+                        <HBox alignment="CENTER" GridPane.rowIndex="1">
+                           <children>
+                              <Label text="Starting Chord" textFill="WHITE" />
+                           </children>
+                        </HBox>
+                        <JFXTextField fx:id="chord" focusColor="#40a868" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                     </children>
+                  </GridPane>
+               </children>
+            </FlowPane>
+         </center>
+         <bottom>
+            <HBox alignment="CENTER" prefHeight="127.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+               <children>
+                  <JFXButton fx:id="startStop" buttonType="RAISED" defaultButton="true" mnemonicParsing="false" onAction="#updatePlayMusic" prefHeight="42.0" prefWidth="96.0" style="-fx-background-color: #1c2833;" text="Jams" textFill="WHITE" />
+               </children>
+            </HBox>
+         </bottom>
+      </BorderPane>
+   </children>
+</AnchorPane>

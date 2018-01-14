@@ -10,6 +10,8 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.effect.Effect;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 
 public class Controller {
@@ -20,7 +22,7 @@ public class Controller {
     private JFXTextField BPM;
 
     @FXML
-    private JFXTextField timeSignature;
+    private AnchorPane mainPane;
 
     @FXML
     private ComboBox firstChord;
@@ -44,6 +46,8 @@ public class Controller {
     public void initialize() throws Exception {
         sound = new Sound();
         gc = canvas.getGraphicsContext2D();
+        BPM.setStyle("-fx-text-inner-color: white;");
+        chord.setStyle("-fx-text-inner-color: white;");
     }
 
     public void setMainController(Main main) {
@@ -62,30 +66,43 @@ public class Controller {
 
         //sound.playKey("a");
         startTimer();
+        drawSquares();
     }
 
     public void drawSquares() {
+        canvas.setWidth(mainPane.getWidth());
+        canvas.setHeight(mainPane.getHeight());
+        System.out.println("This happened");
 
         double windowH = gc.getCanvas().getHeight();
         double windowW = gc.getCanvas().getWidth();
 
+        gc.clearRect(0,0,windowW,windowH);
+
         double widthIncrement = windowW/Display.getInstance().getNoteHeight().length;
 
-        int factor = 10;
+        int factor = 1;
 
         gc.setStroke(Color.rgb(64,168,104));
-
+        gc.setFill(Color.rgb(64,168,104));
+        //gc.setEffect();
         for(int i = 0; i <  Display.getInstance().getNoteHeight().length; i++) {
+
+            gc.setLineWidth(10);
+            gc.strokeLine(widthIncrement * i, windowH, widthIncrement * i, windowH - Display.getInstance().getSpecficNoteHeight(i) * factor);
             gc.rect(widthIncrement * i, windowH - Display.getInstance().getSpecficNoteHeight(i) * factor, 10, Display.getInstance().getSpecficNoteHeight(i) * factor);
             gc.fillRect( Display.getInstance().getSpecficNoteHeight(i) * i, windowH, 10, Display.getInstance().getSpecficNoteHeight(i) * factor);
         }
 
+        gc.rect(100,100,300,300);
+        //gc.fillOval(100,100,234,123);
+        Display.getInstance().decrementAllNoteHeight();
         startTimer();
     }
 
     void startTimer() { // throws Exception {
         // only start a timer if we're in the admin scene. we don't care about the patient scene.
-        runLater(javafx.util.Duration.millis(500), () -> {
+        runLater(javafx.util.Duration.millis(25), () -> {
             drawSquares();
         });
     }

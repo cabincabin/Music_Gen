@@ -8,7 +8,10 @@ public class Display {
     private static Object mutex = new Object();
 
     private Display() {
-
+        noteHeight = new int[83 + 4 - 36];
+        for(int i = 0; i < 83 + 4 - 36; i++) {
+            noteHeight[i] = 1   ;
+        }
     }
 
     public static Display getInstance() {
@@ -19,6 +22,7 @@ public class Display {
                 result = instance;
                 if (result == null)
                     instance = result = new Display();
+
             }
         }
 
@@ -42,12 +46,14 @@ public class Display {
     }
 
     public void incrementNoteHeight(int n) {
-        noteHeight[n] = noteHeight[n] + 10;
+        System.out.println("This is the noteheight: " + n);
+        noteHeight[n] = noteHeight[n] + 50;
     }
 
     public void decrementAllNoteHeight() {
-        for(int n: noteHeight) {
-            n --;
+        for(int i = 0 ; i < noteHeight.length; i++) {
+            if(noteHeight[i] > 1)
+                noteHeight[i] = noteHeight[i] - 1;
         }
     }
 }
