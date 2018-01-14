@@ -1,7 +1,10 @@
 package sample;
 
+import java.util.Random;
+
 public class NextNoteObj {
     String prevChord;
+    Random generator = new Random(System.currentTimeMillis());
 
     NextNoteObj(){ prevChord = null;} //should prolly be singleton or permanant
 
@@ -18,7 +21,7 @@ public class NextNoteObj {
     }
 
     private String getLayerOne(String layerOne){ //can get rid of elses to go to default with no break
-        int chooseChord = (int) Math.floor(Math.random()*100)+1;
+        int chooseChord = (int) Math.floor(generator.nextDouble()*100)+1;
         switch (layerOne){
             case "em":
                 if(chooseChord>0 && chooseChord<=33)

@@ -4,6 +4,7 @@ import javax.sound.midi.*;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Random;
 import java.util.Vector;
 
 public class Sound implements Runnable{
@@ -15,6 +16,7 @@ public class Sound implements Runnable{
     public  int noteNum;
     public  int noteType; //0 major3 1 minor3
     public  int BPM;
+    Random generator = new Random(System.currentTimeMillis());
 
     public Sound() throws Exception{
         noteNum = 48;
@@ -50,7 +52,7 @@ public class Sound implements Runnable{
         //possibilities.add(1);
             while(total > 0){
                 try{
-                note = (int)Math.floor(Math.random()*4);
+                note = (int)Math.floor(generator.nextDouble()*4);
                 if(note == 1){
                     if(noteType == 0){
                         Display.getInstance().incrementNoteHeight(noteNum + 12 + 4 - 36);
@@ -80,7 +82,7 @@ public class Sound implements Runnable{
                     midiChannels[1].noteOn(12, 100);
                 }
 
-                int randVal = (int)Math.floor(Math.random()*possibilities.size());
+                int randVal = (int)Math.floor(generator.nextDouble()*possibilities.size());
                 curr = possibilities.get(randVal);
                 total = total - curr;
                 if(total < 8) {

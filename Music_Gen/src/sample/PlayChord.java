@@ -3,6 +3,7 @@ import javax.sound.midi.*;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Random;
 
 public class PlayChord implements Runnable {
 
@@ -15,6 +16,7 @@ public class PlayChord implements Runnable {
     Sound soundMesure2;
     Sound soundMesure3;
     int noteDepth;
+    Random generator = new Random(System.currentTimeMillis());
 
     public static String chord;
     public static int BPM;
@@ -46,7 +48,7 @@ public class PlayChord implements Runnable {
 
         try {
             //System.out.println("here");
-            noteDepth = (int) Math.random()*4;
+            noteDepth = (int) generator.nextDouble()*4;
             soundMesure1.noteNum = playChord(chord, 90);
             soundMesure1.noteType = chord.length()-1;
             soundMesure1.BPM = BPM;
