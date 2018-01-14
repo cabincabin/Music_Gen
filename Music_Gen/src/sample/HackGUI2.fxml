@@ -38,7 +38,7 @@
                      <children>
                         <HBox alignment="CENTER" prefHeight="93.0" prefWidth="180.0">
                            <children>
-                              <Label text="BPM, yo" textFill="WHITE" />
+                              <Label text="BPM" textFill="WHITE" />
                            </children>
                         </HBox>
                         <JFXTextField fx:id="BPM" focusColor="#40a868" unFocusColor="WHITE" GridPane.columnIndex="1" />
